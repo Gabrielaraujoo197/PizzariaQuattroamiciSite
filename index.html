@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="Quattro Amici Pizzaria – Pizza artesanal no Riacho Fundo I, Brasília. Delivery rápido, massa fresca, ingredientes selecionados. Peça agora pelo WhatsApp!">
+<title>Quattro Amici Pizzaria – Riacho Fundo I, Brasília</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&family=Lato:wght@300;400;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:       #F7F0E3;
+  --cream-dark:  #EDE3CF;
+  --parchment:   #FAF6ED;
+  --terracotta:  #C8492A;
+  --terra-dark:  #9E3318;
+  --terra-light: #E06844;
+  --espresso:    #2B1A0D;
+  --coffee:      #4A2E18;
+  --sage:        #4A6741;
+  --sage-light:  #6B8F67;
+  --ocre:        #C4872A;
+  --ocre-light:  #E0A84A;
+  --charcoal:    #1E1208;
+  --white:       #FFFFFF;
+
+  --ff-serif:    'Playfair Display', Georgia, serif;
+  --ff-display:  'DM Serif Display', Georgia, serif;
+  --ff-sans:     'Lato', sans-serif;
+
+  --shadow-sm:   0 2px 12px rgba(43,26,13,0.08);
+  --shadow-md:   0 8px 40px rgba(43,26,13,0.14);
+  --shadow-lg:   0 24px 80px rgba(43,26,13,0.22);
+  --shadow-xl:   0 40px 120px rgba(43,26,13,0.32);
+
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   40px;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--ff-sans);
+  background: var(--parchment);
+  color: var(--espresso);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ═══════════════════════════════════════════════
+   NOISE TEXTURE OVERLAY
+═══════════════════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════════
+   UTILITY
+═══════════════════════════════════════════════ */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+.ornament {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+  font-family: var(--ff-sans); font-weight: 700; color: var(--terracotta);
+}
+.ornament::before, .ornament::after {
+  content: ''; flex: 1; height: 1px; background: currentColor; opacity: 0.3;
+}
+.ornament.center { justify-content: center; }
+
+.tag {
+  display: inline-block;
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; padding: 5px 14px; border-radius: 40px;
+}
+.tag-terra { background: var(--terracotta); color: #fff; }
+.tag-sage  { background: var(--sage); color: #fff; }
+.tag-ocre  { background: var(--ocre); color: #fff; }
+.tag-outline { border: 1.5px solid var(--terracotta); color: var(--terracotta); }
+
+/* ═══════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(1);    opacity: 0.8; }
+  100% { transform: scale(1.6);  opacity: 0; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes countdown {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50%       { transform: rotate(2deg); }
+}
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+@keyframes popIn {
+  0%   { transform: scale(0.7) translateY(20px); opacity: 0; }
+  70%  { transform: scale(1.05); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.anim-fadeup  { animation: fadeUp 0.7s ease both; }
+.anim-fadein  { animation: fadeIn 0.6s ease both; }
+.anim-scalein { animation: scaleIn 0.6s cubic-bezier(.22,1,.36,1) both; }
+
+[data-delay="1"] { animation-delay: 0.1s; }
+[data-delay="2"] { animation-delay: 0.2s; }
+[data-delay="3"] { animation-delay: 0.3s; }
+[data-delay="4"] { animation-delay: 0.4s; }
+[data-delay="5"] { animation-delay: 0.5s; }
+[data-delay="6"] { animation-delay: 0.6s; }
+[data-delay="7"] { animation-delay: 0.7s; }
+[data-delay="8"] { animation-delay: 0.8s; }
+
+/* ═══════════════════════════════════════════════
+   TOP ANNOUNCEMENT BAR
+═══════════════════════════════════════════════ */
+.announce-bar {
+  background: var(--espresso);
+  color: var(--cream);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  position: relative;
+  z-index: 100;
+  animation: slideDown 0.5s ease both;
+}
+.announce-bar span { color: var(--ocre-light); }
+.announce-bar .ab-close {
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  color: rgba(247,240,227,0.4); font-size: 18px; cursor: pointer;
+  line-height: 1; padding: 4px;
+}
+.announce-bar .ab-close:hover { color: var(--cream); }
+
+/* ═══════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════ */
+.navbar {
+  position: sticky; top: 0; z-index: 500;
+  background: rgba(247,240,227,0.92);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid rgba(43,26,13,0.08);
+  padding: 0 20px;
+  transition: box-shadow 0.3s;
+}
+.navbar.scrolled { box-shadow: var(--shadow-md); }
+.navbar-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px; gap: 20px;
+}
+.nav-logo {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0;
+  text-decoration: none;
+}
+.nav-logo .nl-top {
+  font-size: 8px; letter-spacing: 5px; text-transform: uppercase;
+  font-weight: 700; color: var(--terracotta); line-height: 1;
+}
+.nav-logo .nl-main {
+  font-family: var(--ff-serif); font-size: 22px; font-weight: 900;
+  color: var(--espresso); line-height: 1; letter-spacing: -0.5px;
+}
+.nav-logo .nl-main em { font-style: italic; color: var(--terracotta); }
+
+.nav-links {
+  display: flex; gap: 28px; list-style: none;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+}
+.nav-links a { color: var(--coffee); transition: color 0.2s; }
+.nav-links a:hover { color: var(--terracotta); }
+
+.nav-cta {
+  background: var(--terracotta); color: #fff;
+  padding: 10px 22px; border-radius: var(--radius-xl);
+  font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-cta:hover {
+  background: var(--terra-dark); transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(200,73,42,0.35);
+}
+.nav-cta svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-cta span { display: none; }
+  .nav-cta { padding: 10px 14px; }
+}
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+.hero {
+  min-height: calc(100svh - 104px);
+  background: var(--espresso);
+  position: relative;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+
+/* Background texture layers */
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(200,73,42,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 10% 80%, rgba(74,103,65,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 40% at 90% 10%, rgba(196,135,42,0.10) 0%, transparent 40%);
+}
+
+/* Decorative pizza circle in background */
+.hero-circle {
+  position: absolute;
+  right: -120px; top: 50%; transform: translateY(-50%);
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,73,42,0.12) 0%, rgba(200,73,42,0.04) 40%, transparent 70%);
+  border: 1px solid rgba(200,73,42,0.1);
+}
+.hero-circle::before {
+  content: '';
+  position: absolute; inset: 60px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,73,42,0.08);
+}
+.hero-circle::after {
+  content: '';
+  position: absolute; inset: 120px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,73,42,0.06);
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1080px; margin: 0 auto;
+  padding: 80px 20px 60px;
+  flex: 1;
+}
+
+/* Left column */
+.hero-left { display: flex; flex-direction: column; gap: 28px; }
+
+.hero-inaug {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(200,73,42,0.15);
+  border: 1px solid rgba(200,73,42,0.3);
+  border-radius: 40px; padding: 7px 16px;
+  animation: fadeIn 0.6s ease both;
+}
+.hero-inaug .pulse {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--terracotta); position: relative; flex-shrink: 0;
+}
+.hero-inaug .pulse::after {
+  content: ''; position: absolute; inset: -3px;
+  border-radius: 50%; border: 2px solid var(--terracotta);
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+.hero-inaug span {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--terra-light);
+}
+
+.hero-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(44px, 6vw, 80px);
+  font-weight: 900; line-height: 1.0;
+  color: var(--cream);
+  animation: fadeUp 0.8s ease both 0.1s;
+}
+.hero-title em {
+  font-style: italic; color: var(--terracotta);
+  display: block;
+}
+.hero-title .hero-name-sub {
+  font-size: 0.5em; font-style: normal;
+  font-weight: 400; color: rgba(247,240,227,0.45);
+  letter-spacing: 4px; text-transform: uppercase;
+  font-family: var(--ff-sans);
+  display: block; margin-bottom: 8px;
+}
+
+.hero-sub {
+  font-size: clamp(15px, 2vw, 18px);
+  color: rgba(247,240,227,0.65); line-height: 1.65;
+  font-weight: 300;
+  animation: fadeUp 0.8s ease both 0.2s;
+}
+.hero-sub strong { color: var(--ocre-light); font-weight: 700; }
+
+/* Social proof strip */
+.hero-proof {
+  display: flex; align-items: center; gap: 16px;
+  animation: fadeUp 0.8s ease both 0.3s;
+}
+.proof-stars { display: flex; gap: 3px; }
+.proof-stars span { color: var(--ocre-light); font-size: 16px; }
+.proof-text { font-size: 13px; color: rgba(247,240,227,0.55); font-weight: 400; }
+.proof-text strong { color: var(--cream); font-weight: 700; }
+.proof-divider { width: 1px; height: 24px; background: rgba(247,240,227,0.15); }
+.proof-counter { font-size: 13px; color: rgba(247,240,227,0.55); }
+.proof-counter strong { color: var(--cream); font-weight: 700; }
+
+/* CTA Buttons */
+.hero-ctas {
+  display: flex; flex-direction: column; gap: 12px;
+  animation: fadeUp 0.8s ease both 0.4s;
+}
+.cta-primary {
+  background: var(--terracotta);
+  color: #fff; border-radius: var(--radius-xl);
+  padding: 18px 32px;
+  font-size: 16px; font-weight: 700; letter-spacing: 0.5px;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  transition: all 0.25s cubic-bezier(.22,1,.36,1);
+  box-shadow: 0 8px 32px rgba(200,73,42,0.4), 0 2px 8px rgba(200,73,42,0.2);
+  position: relative; overflow: hidden;
+}
+.cta-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+}
+.cta-primary:hover {
+  background: var(--terra-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 48px rgba(200,73,42,0.5), 0 4px 12px rgba(200,73,42,0.3);
+}
+.cta-primary:active { transform: translateY(0); }
+.cta-primary .cta-icon { width: 22px; height: 22px; flex-shrink: 0; fill: currentColor; }
+
+.cta-secondary {
+  color: rgba(247,240,227,0.6); background: rgba(247,240,227,0.06);
+  border: 1px solid rgba(247,240,227,0.15);
+  border-radius: var(--radius-xl); padding: 14px 28px;
+  font-size: 14px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; text-align: center;
+  transition: all 0.2s;
+}
+.cta-secondary:hover {
+  color: var(--cream); background: rgba(247,240,227,0.1);
+  border-color: rgba(247,240,227,0.3);
+}
+
+/* Offer badge */
+.hero-offer {
+  background: rgba(196,135,42,0.12);
+  border: 1px solid rgba(196,135,42,0.25);
+  border-radius: var(--radius-md); padding: 16px 20px;
+  display: flex; gap: 14px; align-items: flex-start;
+  animation: fadeUp 0.8s ease both 0.5s;
+}
+.offer-emoji { font-size: 28px; flex-shrink: 0; animation: wiggle 3s ease infinite; }
+.offer-body {}
+.offer-tag {
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  font-weight: 700; color: var(--ocre-light); margin-bottom: 4px;
+}
+.offer-title { font-size: 14px; font-weight: 700; color: var(--cream); margin-bottom: 2px; }
+.offer-sub { font-size: 12px; color: rgba(247,240,227,0.5); }
+
+/* Right column – pizza visual */
+.hero-right {
+  position: relative; display: flex;
+  align-items: center; justify-content: center;
+  animation: scaleIn 1s cubic-bezier(.22,1,.36,1) both 0.2s;
+}
+
+.pizza-stage {
+  position: relative; width: 420px; height: 420px;
+  max-width: 100%; aspect-ratio: 1;
+}
+
+/* Rotating ring */
+.pizza-ring {
+  position: absolute; inset: -24px;
+  border-radius: 50%;
+  border: 1px dashed rgba(200,73,42,0.2);
+  animation: spin-slow 40s linear infinite;
+}
+.pizza-ring-2 {
+  position: absolute; inset: -48px;
+  border-radius: 50%;
+  border: 1px solid rgba(196,135,42,0.1);
+  animation: spin-slow 60s linear infinite reverse;
+}
+
+/* Pizza emoji display */
+.pizza-display {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(200,73,42,0.22), rgba(43,26,13,0.8) 70%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 180px; line-height: 1;
+  animation: float 6s ease-in-out infinite;
+  box-shadow:
+    0 40px 120px rgba(0,0,0,0.6),
+    0 0 80px rgba(200,73,42,0.15),
+    inset 0 0 80px rgba(0,0,0,0.4);
+  user-select: none;
+  border: 1px solid rgba(200,73,42,0.15);
+}
+
+/* Floating cards */
+.float-card {
+  position: absolute;
+  background: rgba(247,240,227,0.95);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+.fc-1 { bottom: 20px; left: -30px; animation: float 5s ease-in-out infinite 1s; }
+.fc-2 { top: 40px; right: -20px; animation: float 7s ease-in-out infinite 0.5s; }
+.fc-3 { bottom: 100px; right: -40px; animation: float 4s ease-in-out infinite 2s; }
+
+.fc-1 .fc-label, .fc-2 .fc-label, .fc-3 .fc-label {
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 700; color: var(--terracotta); margin-bottom: 2px;
+}
+.fc-1 .fc-value, .fc-2 .fc-value, .fc-3 .fc-value {
+  font-family: var(--ff-serif); font-size: 20px; font-weight: 900;
+  color: var(--espresso); line-height: 1.1;
+}
+.fc-1 .fc-sub, .fc-2 .fc-sub, .fc-3 .fc-sub {
+  font-size: 11px; color: rgba(43,26,13,0.5);
+}
+
+/* Countdown bar */
+.hero-countdown {
+  background: var(--espresso); padding: 16px 20px;
+  position: relative; z-index: 2;
+}
+.hc-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; align-items: center; gap: 16px;
+  flex-wrap: wrap; justify-content: center;
+}
+.hc-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(247,240,227,0.5); font-weight: 700; white-space: nowrap; }
+.hc-timer { display: flex; gap: 8px; align-items: center; }
+.hc-unit { text-align: center; }
+.hc-num {
+  background: var(--terracotta); color: #fff;
+  font-family: var(--ff-serif); font-size: 22px; font-weight: 900;
+  padding: 4px 10px; border-radius: 6px; line-height: 1; display: block; min-width: 40px;
+}
+.hc-ulab { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(247,240,227,0.35); margin-top: 4px; display: block; }
+.hc-sep { font-family: var(--ff-serif); font-size: 22px; color: var(--terracotta); font-weight: 900; line-height: 1; margin-top: -8px; }
+.hc-copy { font-size: 13px; color: var(--ocre-light); font-weight: 700; }
+.hc-cta {
+  background: var(--terracotta); color: #fff;
+  padding: 8px 20px; border-radius: 40px;
+  font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  white-space: nowrap; transition: background 0.2s;
+}
+.hc-cta:hover { background: var(--terra-dark); }
+
+@media (max-width: 900px) {
+  .hero-content { grid-template-columns: 1fr; padding: 48px 20px 40px; gap: 48px; }
+  .hero-right { order: -1; }
+  .pizza-stage { width: 280px; height: 280px; }
+  .pizza-display { font-size: 120px; }
+  .fc-1 { bottom: -10px; left: 0; }
+  .fc-2 { top: 10px; right: -10px; }
+  .fc-3 { display: none; }
+  .pizza-ring-2 { display: none; }
+  .hero-title { font-size: clamp(38px, 10vw, 56px); }
+}
+
+/* ═══════════════════════════════════════════════
+   OFFER SECTION
+═══════════════════════════════════════════════ */
+.offers {
+  padding: 80px 20px;
+  background: var(--parchment);
+}
+.offers-head { text-align: center; margin-bottom: 52px; }
+.section-kicker {
+  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+  font-weight: 700; color: var(--terracotta); margin-bottom: 12px; display: block;
+}
+.section-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(30px, 4.5vw, 52px);
+  font-weight: 900; line-height: 1.1;
+  color: var(--espresso);
+}
+.section-title em { font-style: italic; color: var(--terracotta); }
+.section-sub {
+  margin-top: 12px; font-size: 15px; color: rgba(43,26,13,0.55);
+  line-height: 1.6; max-width: 520px; margin-left: auto; margin-right: auto;
+}
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1080px; margin: 0 auto;
+}
+@media (max-width: 768px) { .offers-grid { grid-template-columns: 1fr; } }
+@media (min-width: 480px) and (max-width: 768px) { .offers-grid { grid-template-columns: 1fr 1fr; } }
+
+.offer-card {
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  position: relative; overflow: hidden;
+  transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s;
+}
+.offer-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+.oc-1 { background: var(--terracotta); color: #fff; }
+.oc-2 { background: var(--espresso); color: var(--cream); }
+.oc-3 { background: var(--sage); color: #fff; }
+
+.offer-card::before {
+  content: attr(data-emoji);
+  position: absolute; right: -10px; bottom: -10px;
+  font-size: 90px; line-height: 1; opacity: 0.12;
+}
+.offer-card .oc-tag {
+  font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
+  font-weight: 700; opacity: 0.6; margin-bottom: 10px; display: block;
+}
+.offer-card .oc-title {
+  font-family: var(--ff-serif); font-size: 26px; font-weight: 900;
+  line-height: 1.1; margin-bottom: 8px;
+}
+.offer-card .oc-desc { font-size: 13px; opacity: 0.7; line-height: 1.6; margin-bottom: 20px; }
+.offer-card .oc-highlight {
+  font-family: var(--ff-serif); font-size: 36px; font-weight: 900;
+  line-height: 1; display: block; margin-bottom: 4px;
+}
+.offer-card .oc-code {
+  font-size: 12px; font-weight: 700; letter-spacing: 3px;
+  background: rgba(255,255,255,0.15); padding: 6px 12px;
+  border-radius: 6px; display: inline-block;
+}
+.offer-card .oc-cta {
+  margin-top: 20px; display: block;
+  background: rgba(255,255,255,0.15); color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 11px 20px; border-radius: 40px;
+  font-size: 13px; font-weight: 700; text-align: center;
+  transition: background 0.2s;
+}
+.offer-card .oc-cta:hover { background: rgba(255,255,255,0.25); }
+
+/* ═══════════════════════════════════════════════
+   MENU SECTION
+═══════════════════════════════════════════════ */
+.menu {
+  padding: 80px 20px;
+  background: var(--espresso);
+}
+.menu-head { text-align: center; margin-bottom: 52px; }
+.menu-head .section-title { color: var(--cream); }
+.menu-head .section-title em { color: var(--terracotta); }
+.menu-head .section-sub { color: rgba(247,240,227,0.5); }
+
+/* Filter tabs */
+.menu-tabs {
+  display: flex; gap: 8px; justify-content: center;
+  flex-wrap: wrap; margin-bottom: 40px;
+}
+.menu-tab {
+  padding: 9px 22px; border-radius: 40px;
+  font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  border: 1.5px solid rgba(247,240,227,0.15);
+  color: rgba(247,240,227,0.45);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.menu-tab:hover { border-color: rgba(247,240,227,0.35); color: rgba(247,240,227,0.7); }
+.menu-tab.active {
+  background: var(--terracotta); border-color: var(--terracotta);
+  color: #fff;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1080px; margin: 0 auto;
+}
+@media (max-width: 900px) { .menu-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .menu-grid { grid-template-columns: 1fr; } }
+
+.pizza-card {
+  background: rgba(247,240,227,0.04);
+  border: 1px solid rgba(247,240,227,0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(.22,1,.36,1), border-color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.pizza-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200,73,42,0.3);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.pc-visual {
+  height: 180px;
+  background: radial-gradient(circle at 40% 35%, rgba(200,73,42,0.2), rgba(43,26,13,0.9));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 90px; position: relative;
+  transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+}
+.pizza-card:hover .pc-visual { transform: scale(1.04); }
+
+.pc-badges {
+  position: absolute; top: 12px; left: 12px;
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.pc-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 40px;
+  backdrop-filter: blur(10px);
+}
+.badge-hot   { background: var(--terracotta); color: #fff; }
+.badge-new   { background: var(--sage); color: #fff; }
+.badge-best  { background: var(--ocre); color: #fff; }
+.badge-veg   { background: rgba(74,103,65,0.8); color: #fff; }
+
+.pc-body { padding: 20px; }
+.pc-name {
+  font-family: var(--ff-serif); font-size: 20px; font-weight: 700;
+  color: var(--cream); margin-bottom: 6px; line-height: 1.2;
+}
+.pc-name em { font-style: italic; color: var(--terracotta); }
+.pc-ingredients {
+  font-size: 12px; color: rgba(247,240,227,0.4); line-height: 1.5; margin-bottom: 16px;
+}
+.pc-footer {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.pc-price {
+  font-family: var(--ff-serif); font-size: 24px; font-weight: 900;
+  color: var(--cream);
+}
+.pc-price small {
+  font-family: var(--ff-sans); font-size: 12px; font-weight: 400;
+  color: rgba(247,240,227,0.4); display: block;
+}
+.pc-btn {
+  background: var(--terracotta); color: #fff;
+  padding: 10px 20px; border-radius: 40px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+  transition: all 0.2s; white-space: nowrap;
+  display: flex; align-items: center; gap: 6px;
+}
+.pc-btn:hover { background: var(--terra-dark); transform: scale(1.03); }
+.pc-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+/* Menu footer CTA */
+.menu-footer { text-align: center; margin-top: 40px; }
+.menu-footer p { color: rgba(247,240,227,0.4); font-size: 14px; margin-bottom: 20px; }
+.btn-cardapio-full {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1.5px solid rgba(247,240,227,0.2); color: rgba(247,240,227,0.7);
+  padding: 14px 32px; border-radius: 40px;
+  font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  transition: all 0.2s;
+}
+.btn-cardapio-full:hover { border-color: var(--terracotta); color: var(--cream); }
+
+/* ═══════════════════════════════════════════════
+   DIFERENCIAIS
+═══════════════════════════════════════════════ */
+.diferenciais {
+  padding: 80px 20px;
+  background: var(--cream);
+  position: relative; overflow: hidden;
+}
+.diferenciais::before {
+  content: '';
+  position: absolute; top: -100px; right: -100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,73,42,0.06) 0%, transparent 70%);
+}
+.dif-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1080px; margin: 52px auto 0;
+}
+@media (max-width: 900px) { .dif-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .dif-grid { grid-template-columns: 1fr; } }
+
+.dif-card {
+  text-align: center; padding: 36px 24px;
+  border-radius: var(--radius-lg);
+  background: var(--parchment);
+  border: 1px solid rgba(43,26,13,0.06);
+  transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s;
+}
+.dif-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.dif-icon { font-size: 44px; margin-bottom: 16px; display: block; }
+.dif-title {
+  font-family: var(--ff-serif); font-size: 18px; font-weight: 700;
+  color: var(--espresso); margin-bottom: 8px;
+}
+.dif-desc { font-size: 13px; color: rgba(43,26,13,0.55); line-height: 1.65; }
+
+/* ═══════════════════════════════════════════════
+   STORYTELLING
+═══════════════════════════════════════════════ */
+.story {
+  padding: 80px 20px;
+  background: var(--espresso);
+  position: relative; overflow: hidden;
+}
+.story::before {
+  content: '"';
+  position: absolute; left: 40px; top: 40px;
+  font-family: var(--ff-serif); font-size: 300px; line-height: 1;
+  color: rgba(247,240,227,0.03); font-weight: 900;
+}
+.story-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+@media (max-width: 768px) { .story-inner { grid-template-columns: 1fr; gap: 48px; } }
+
+.story-visual {
+  position: relative;
+}
+.story-img-wrap {
+  border-radius: var(--radius-lg); overflow: hidden;
+  background: rgba(247,240,227,0.05);
+  aspect-ratio: 4/5;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 120px;
+  border: 1px solid rgba(247,240,227,0.08);
+  position: relative;
+}
+.story-img-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(43,26,13,0.5) 0%, transparent 60%);
+}
+.story-badge {
+  position: absolute; bottom: 24px; left: 24px; right: 24px;
+  background: var(--terracotta); border-radius: var(--radius-md);
+  padding: 16px 20px; z-index: 2;
+}
+.story-badge .sb-num {
+  font-family: var(--ff-serif); font-size: 36px; font-weight: 900; color: #fff; line-height: 1;
+}
+.story-badge .sb-text { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+.story-content { position: relative; z-index: 1; }
+.story-content .section-title { color: var(--cream); text-align: left; }
+.story-content .section-title em { color: var(--terracotta); }
+
+.story-text {
+  margin-top: 24px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.story-text p {
+  font-size: 15px; line-height: 1.75; color: rgba(247,240,227,0.6);
+}
+.story-text p strong { color: var(--ocre-light); font-weight: 700; }
+
+.story-pillars {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px;
+}
+.story-pillar {
+  background: rgba(247,240,227,0.04); border: 1px solid rgba(247,240,227,0.08);
+  border-radius: var(--radius-sm); padding: 16px;
+}
+.sp-icon { font-size: 20px; margin-bottom: 6px; display: block; }
+.sp-title { font-size: 13px; font-weight: 700; color: var(--cream); margin-bottom: 2px; }
+.sp-desc { font-size: 11px; color: rgba(247,240,227,0.4); }
+
+/* ═══════════════════════════════════════════════
+   DEPOIMENTOS
+═══════════════════════════════════════════════ */
+.depoimentos {
+  padding: 80px 20px;
+  background: var(--parchment);
+}
+.dep-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; max-width: 1080px; margin: 52px auto 0;
+}
+@media (max-width: 768px) { .dep-grid { grid-template-columns: 1fr; } }
+@media (min-width: 480px) and (max-width: 768px) { .dep-grid { grid-template-columns: 1fr 1fr; } }
+
+.dep-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 28px; border: 1px solid rgba(43,26,13,0.06);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s;
+}
+.dep-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.dep-stars { display: flex; gap: 3px; margin-bottom: 14px; }
+.dep-stars span { color: var(--ocre); font-size: 14px; }
+.dep-text {
+  font-size: 14px; color: rgba(43,26,13,0.7); line-height: 1.7;
+  font-style: italic; margin-bottom: 18px;
+  font-family: var(--ff-serif); font-weight: 400;
+}
+.dep-author { display: flex; align-items: center; gap: 12px; }
+.dep-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--terracotta); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-serif); font-size: 16px; font-weight: 700;
+  flex-shrink: 0;
+}
+.dep-name { font-size: 13px; font-weight: 700; color: var(--espresso); }
+.dep-meta { font-size: 11px; color: rgba(43,26,13,0.4); }
+
+/* ═══════════════════════════════════════════════
+   DELIVERY / REGIÃO
+═══════════════════════════════════════════════ */
+.delivery {
+  padding: 80px 20px;
+  background: var(--cream-dark);
+}
+.delivery-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+}
+@media (max-width: 768px) { .delivery-inner { grid-template-columns: 1fr; gap: 48px; } }
+
+.delivery-info .section-title { text-align: left; }
+
+.bairros {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;
+}
+.bairro {
+  background: var(--white); border: 1.5px solid rgba(43,26,13,0.1);
+  border-radius: 40px; padding: 7px 16px;
+  font-size: 12px; font-weight: 700; color: var(--coffee);
+  transition: all 0.2s;
+}
+.bairro.highlight { background: var(--terracotta); color: #fff; border-color: var(--terracotta); }
+.bairro:hover { border-color: var(--terracotta); color: var(--terracotta); }
+
+.delivery-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px;
+}
+.ds-item {
+  background: var(--white); border-radius: var(--radius-md); padding: 20px;
+  border: 1px solid rgba(43,26,13,0.06); text-align: center;
+}
+.ds-num {
+  font-family: var(--ff-serif); font-size: 32px; font-weight: 900;
+  color: var(--terracotta); line-height: 1; display: block;
+}
+.ds-label { font-size: 11px; color: rgba(43,26,13,0.5); margin-top: 4px; font-weight: 700; letter-spacing: 1px; }
+
+.delivery-map {
+  background: var(--espresso); border-radius: var(--radius-lg);
+  padding: 32px; border: 1px solid rgba(247,240,227,0.06);
+}
+.dm-title {
+  font-family: var(--ff-serif); font-size: 20px; font-weight: 700;
+  color: var(--cream); margin-bottom: 20px;
+}
+.dm-list { display: flex; flex-direction: column; gap: 12px; }
+.dm-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border-radius: var(--radius-sm);
+  background: rgba(247,240,227,0.04); border: 1px solid rgba(247,240,227,0.06);
+  transition: background 0.2s;
+}
+.dm-item:hover { background: rgba(247,240,227,0.07); }
+.dm-icon { font-size: 20px; flex-shrink: 0; }
+.dm-info { flex: 1; }
+.dm-name { font-size: 13px; font-weight: 700; color: var(--cream); }
+.dm-detail { font-size: 11px; color: rgba(247,240,227,0.4); }
+.dm-badge {
+  font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 40px;
+  background: var(--sage); color: #fff; white-space: nowrap;
+}
+.dm-badge.red { background: var(--terracotta); }
+
+.horarios {
+  margin-top: 20px; padding: 16px 20px;
+  background: rgba(247,240,227,0.04); border-radius: var(--radius-md);
+  border: 1px solid rgba(247,240,227,0.08);
+}
+.hor-title { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; color: var(--terracotta); margin-bottom: 12px; }
+.hor-row { display: flex; justify-content: space-between; font-size: 13px; color: rgba(247,240,227,0.6); padding: 4px 0; border-bottom: 1px solid rgba(247,240,227,0.05); }
+.hor-row:last-child { border-bottom: none; }
+.hor-row strong { color: var(--cream); }
+
+/* ═══════════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════════ */
+.faq {
+  padding: 80px 20px;
+  background: var(--parchment);
+}
+.faq-inner { max-width: 720px; margin: 52px auto 0; }
+.faq-item {
+  border-bottom: 1px solid rgba(43,26,13,0.08);
+}
+.faq-q {
+  width: 100%; text-align: left;
+  padding: 20px 0; display: flex; justify-content: space-between; align-items: center;
+  font-size: 15px; font-weight: 700; color: var(--espresso);
+  font-family: var(--ff-serif);
+  cursor: pointer; gap: 16px;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--terracotta); }
+.faq-q .faq-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(200,73,42,0.1); color: var(--terracotta);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0; transition: transform 0.3s, background 0.2s;
+  font-weight: 400; line-height: 1;
+}
+.faq-item.open .faq-q .faq-icon { transform: rotate(45deg); background: var(--terracotta); color: #fff; }
+.faq-a {
+  font-size: 14px; color: rgba(43,26,13,0.6); line-height: 1.7;
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(.22,1,.36,1), padding 0.3s;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 20px; }
+
+/* ═══════════════════════════════════════════════
+   CTA FINAL
+═══════════════════════════════════════════════ */
+.cta-final {
+  padding: 100px 20px;
+  background: var(--espresso);
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-final::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(200,73,42,0.2) 0%, transparent 60%);
+}
+.cta-final-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+.cta-final .section-title { color: var(--cream); }
+.cta-final .section-title em { color: var(--terracotta); }
+.cta-final .section-sub {
+  color: rgba(247,240,227,0.5);
+  font-size: 16px; max-width: 500px;
+}
+.cta-final-btns {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 14px; margin-top: 40px;
+}
+.cta-mega {
+  background: var(--terracotta); color: #fff;
+  padding: 22px 48px; border-radius: var(--radius-xl);
+  font-size: 18px; font-weight: 700; letter-spacing: 0.5px;
+  display: inline-flex; align-items: center; gap: 14px;
+  transition: all 0.25s cubic-bezier(.22,1,.36,1);
+  box-shadow: 0 12px 48px rgba(200,73,42,0.5);
+  animation: float 4s ease-in-out infinite;
+}
+.cta-mega:hover {
+  background: var(--terra-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 64px rgba(200,73,42,0.6);
+}
+.cta-mega svg { width: 26px; height: 26px; fill: currentColor; }
+.cta-final-note { font-size: 12px; color: rgba(247,240,227,0.3); letter-spacing: 1px; }
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  background: var(--charcoal);
+  padding: 48px 20px 24px;
+  color: rgba(247,240,227,0.4);
+}
+.footer-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+  margin-bottom: 40px;
+}
+@media (max-width: 640px) { .footer-inner { grid-template-columns: 1fr; gap: 32px; } }
+
+.footer-brand .fb-logo {
+  font-family: var(--ff-serif); font-size: 28px; font-weight: 900;
+  color: var(--cream); margin-bottom: 12px;
+}
+.footer-brand .fb-logo em { font-style: italic; color: var(--terracotta); }
+.footer-brand p { font-size: 13px; line-height: 1.6; max-width: 260px; }
+
+.footer-col h4 {
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  font-weight: 700; color: var(--terracotta); margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer-col ul li { font-size: 13px; }
+.footer-col ul a { color: rgba(247,240,227,0.4); transition: color 0.2s; }
+.footer-col ul a:hover { color: var(--cream); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(247,240,227,0.05);
+  padding-top: 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-bottom p { font-size: 12px; }
+.footer-logo-small {
+  font-family: var(--ff-serif); font-size: 14px; font-weight: 700;
+  color: rgba(247,240,227,0.2);
+}
+.footer-logo-small em { font-style: italic; color: rgba(200,73,42,0.4); }
+
+/* ═══════════════════════════════════════════════
+   FLOATING WHATSAPP CTA (MOBILE STICKY)
+═══════════════════════════════════════════════ */
+.float-wa {
+  position: fixed; bottom: 24px; right: 20px;
+  z-index: 1000;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+}
+.float-wa-btn {
+  background: #25D366; color: #fff;
+  width: 60px; height: 60px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+  transition: all 0.2s;
+  animation: float 3s ease-in-out infinite;
+}
+.float-wa-btn:hover { background: #20bb5a; transform: scale(1.1); }
+.float-wa-btn svg { width: 30px; height: 30px; fill: #fff; }
+.float-wa-label {
+  background: var(--espresso); color: var(--cream);
+  padding: 8px 16px; border-radius: 40px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+  white-space: nowrap; box-shadow: var(--shadow-md);
+  opacity: 0; transform: translateX(10px);
+  transition: all 0.3s;
+}
+.float-wa:hover .float-wa-label { opacity: 1; transform: translateX(0); }
+
+/* Mobile sticky CTA bar */
+.sticky-mobile {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  z-index: 999;
+  background: var(--espresso);
+  padding: 12px 20px;
+  border-top: 1px solid rgba(247,240,227,0.08);
+  gap: 10px;
+}
+@media (max-width: 640px) { .sticky-mobile { display: flex; } }
+.sm-btn {
+  flex: 1; padding: 14px;
+  border-radius: var(--radius-md);
+  font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+  text-align: center; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.sm-btn-wa { background: #25D366; color: #fff; }
+.sm-btn-wa:hover { background: #20bb5a; }
+.sm-btn-wa svg { width: 18px; height: 18px; fill: currentColor; }
+.sm-btn-menu { background: rgba(247,240,227,0.08); color: var(--cream); border: 1.5px solid rgba(247,240,227,0.12); }
+
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.22,1,.36,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-stagger .reveal { transition-delay: calc(var(--i, 0) * 0.1s); }
+
+/* ═══════════════════════════════════════════════
+   POPUP
+═══════════════════════════════════════════════ */
+.popup-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(43,26,13,0.75);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; pointer-events: none; transition: opacity 0.35s;
+}
+.popup-overlay.show { opacity: 1; pointer-events: all; }
+.popup-box {
+  background: var(--espresso);
+  border-radius: var(--radius-xl); overflow: hidden;
+  max-width: 420px; width: 100%;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid rgba(247,240,227,0.08);
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+}
+.popup-overlay.show .popup-box { transform: scale(1) translateY(0); }
+.popup-top {
+  background: var(--terracotta); padding: 32px 32px 24px;
+  text-align: center; position: relative;
+}
+.popup-top .pt-emoji { font-size: 60px; display: block; margin-bottom: 12px; animation: float 3s ease-in-out infinite; }
+.popup-top .pt-title { font-family: var(--ff-serif); font-size: 28px; font-weight: 900; color: #fff; line-height: 1.1; }
+.popup-top .pt-sub { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 8px; }
+.popup-close {
+  position: absolute; top: 16px; right: 16px;
+  color: rgba(255,255,255,0.5); font-size: 24px;
+  cursor: pointer; width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; transition: all 0.2s;
+}
+.popup-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.popup-body { padding: 28px 32px 32px; }
+.popup-offer {
+  background: rgba(247,240,227,0.06); border-radius: var(--radius-md);
+  padding: 20px; margin-bottom: 20px; text-align: center;
+  border: 1px solid rgba(247,240,227,0.1);
+}
+.popup-offer .po-label { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: rgba(247,240,227,0.4); margin-bottom: 6px; }
+.popup-offer .po-code { font-family: var(--ff-serif); font-size: 36px; font-weight: 900; color: var(--ocre-light); letter-spacing: 4px; }
+.popup-offer .po-desc { font-size: 12px; color: rgba(247,240,227,0.5); margin-top: 4px; }
+.popup-cta {
+  background: #25D366; color: #fff;
+  padding: 16px 24px; border-radius: var(--radius-md);
+  font-size: 15px; font-weight: 700; text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: all 0.2s; width: 100%;
+}
+.popup-cta:hover { background: #20bb5a; transform: translateY(-1px); }
+.popup-cta svg { width: 20px; height: 20px; fill: currentColor; }
+.popup-skip { text-align: center; margin-top: 12px; font-size: 12px; color: rgba(247,240,227,0.25); cursor: pointer; }
+.popup-skip:hover { color: rgba(247,240,227,0.5); }
+</style>
+</head>
+<body>
+
+<!-- POPUP OFERTA -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-box">
+    <div class="popup-top">
+      <button class="popup-close" onclick="closePopup()">✕</button>
+      <span class="pt-emoji">🍕</span>
+      <h2 class="pt-title">Presente de Inauguração</h2>
+      <p class="pt-sub">Só para quem chegar primeiro hoje</p>
+    </div>
+    <div class="popup-body">
+      <div class="popup-offer">
+        <div class="po-label">Seu cupom exclusivo</div>
+        <div class="po-code">AMICI10</div>
+        <div class="po-desc">10% OFF em qualquer pedido • Válido hoje</div>
+      </div>
+      <a href="https://wa.me/5561999999999?text=Olá!%20Vi%20o%20site%20e%20quero%20usar%20o%20cupom%20AMICI10%20🍕" class="popup-cta" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Pegar cupom no WhatsApp
+      </a>
+      <div class="popup-skip" onclick="closePopup()">Não, obrigado</div>
+    </div>
+  </div>
+</div>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar" id="announcebar">
+  🎉 INAUGURAÇÃO — Use o cupom <span>AMICI10</span> e ganhe 10% OFF no primeiro pedido!
+  <span class="ab-close" onclick="document.getElementById('announcebar').remove()">✕</span>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="nav-logo" aria-label="Quattro Amici Pizzaria">
+      <span class="nl-top">Pizzaria</span>
+      <span class="nl-main">Quattro <em>Amici</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#cardapio">Cardápio</a></li>
+      <li><a href="#historia">Nossa História</a></li>
+      <li><a href="#delivery">Delivery</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="https://wa.me/5561999999999?text=Olá!%20Quero%20fazer%20um%20pedido%20🍕" target="_blank" rel="noopener" class="nav-cta">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      <span>Pedir agora</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-circle"></div>
+
+  <div class="hero-content">
+    <!-- Left -->
+    <div class="hero-left">
+      <div class="hero-inaug anim-fadein">
+        <span class="pulse"></span>
+        <span>✨ Inauguração — Riacho Fundo I</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-name-sub">Quattro Amici</span>
+        A pizza que<br>você merecia<br><em>desde sempre.</em>
+      </h1>
+
+      <p class="hero-sub">
+        Massa artesanal, molho exclusivo e <strong>ingredientes de verdade</strong> — feita com as mãos, entregue com alma direto na sua porta no Riacho Fundo I e região.
+      </p>
+
+      <div class="hero-proof">
+        <div class="proof-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <span class="proof-text"><strong>5.0</strong> no Google</span>
+        <div class="proof-divider"></div>
+        <span class="proof-counter"><strong>+200</strong> pedidos na inauguração</span>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="https://wa.me/5561999999999?text=Olá!%20Quero%20fazer%20um%20pedido%20🍕" target="_blank" rel="noopener" class="cta-primary">
+          <svg class="cta-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Pedir agora no WhatsApp
+        </a>
+        <a href="#cardapio" class="cta-secondary">Ver Cardápio Completo ↓</a>
+      </div>
+
+      <div class="hero-offer">
+        <span class="offer-emoji">🎁</span>
+        <div class="offer-body">
+          <div class="offer-tag">Oferta de inauguração</div>
+          <div class="offer-title">2 Pizzas Grandes + Refrigerante Grátis</div>
+          <div class="offer-sub">Peça com o cupom <strong style="color:var(--ocre-light)">AMICI10</strong> · Válido hoje</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right – Pizza Visual -->
+    <div class="hero-right">
+      <div class="pizza-stage">
+        <div class="pizza-ring"></div>
+        <div class="pizza-ring-2"></div>
+        <div class="pizza-display">🍕</div>
+
+        <div class="float-card fc-1">
+          <div class="fc-label">Entrega</div>
+          <div class="fc-value">35 min</div>
+          <div class="fc-sub">tempo médio</div>
+        </div>
+        <div class="float-card fc-2">
+          <div class="fc-label">Avaliação</div>
+          <div class="fc-value">★ 5.0</div>
+          <div class="fc-sub">Google Maps</div>
+        </div>
+        <div class="float-card fc-3">
+          <div class="fc-label">Massa</div>
+          <div class="fc-value">100%</div>
+          <div class="fc-sub">artesanal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Countdown bar -->
+  <div class="hero-countdown">
+    <div class="hc-inner">
+      <span class="hc-label">⏳ Oferta encerra em</span>
+      <div class="hc-timer">
+        <div class="hc-unit"><span class="hc-num" id="h-horas">05</span><span class="hc-ulab">horas</span></div>
+        <span class="hc-sep">:</span>
+        <div class="hc-unit"><span class="hc-num" id="h-min">47</span><span class="hc-ulab">min</span></div>
+        <span class="hc-sep">:</span>
+        <div class="hc-unit"><span class="hc-num" id="h-sec">32</span><span class="hc-ulab">seg</span></div>
+      </div>
+      <span class="hc-copy">Garanta seu desconto de inauguração</span>
+      <a href="https://wa.me/5561999999999?text=Quero%20o%20cupom%20AMICI10%20🍕" target="_blank" rel="noopener" class="hc-cta">Pegar cupom</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ OFERTAS ═══════════════════════ -->
+<section class="offers" id="ofertas">
+  <div class="offers-head">
+    <span class="section-kicker">Promoções da casa</span>
+    <h2 class="section-title">Ofertas que fazem<br>você <em>pedir agora</em></h2>
+    <p class="section-sub">Combos pensados para toda família e momentos especiais. Válidos todos os dias.</p>
+  </div>
+  <div class="offers-grid reveal-stagger">
+    <div class="offer-card oc-1 reveal" style="--i:0" data-emoji="🍕">
+      <span class="oc-tag">Mais pedido</span>
+      <h3 class="oc-title">Combo<br>Famiglia</h3>
+      <p class="oc-desc">2 pizzas grandes à sua escolha + 1 refrigerante 2L. Perfeito pra reunir a turma.</p>
+      <span class="oc-highlight">R$ 89,90</span>
+      <span class="oc-code">FAMIGLIA</span>
+      <a href="https://wa.me/5561999999999?text=Quero%20o%20Combo%20Famiglia%20🍕" target="_blank" rel="noopener" class="oc-cta">Pedir esse combo</a>
+    </div>
+    <div class="offer-card oc-2 reveal" style="--i:1" data-emoji="💑">
+      <span class="oc-tag">Romântico</span>
+      <h3 class="oc-title">Pizza<br>a Due</h3>
+      <p class="oc-desc">1 pizza grande + 2 refrigerantes gelados. Noite perfeita sem sair de casa.</p>
+      <span class="oc-highlight">R$ 54,90</span>
+      <span class="oc-code">ADUE</span>
+      <a href="https://wa.me/5561999999999?text=Quero%20a%20Pizza%20a%20Due%20🍕" target="_blank" rel="noopener" class="oc-cta">Pedir esse combo</a>
+    </div>
+    <div class="offer-card oc-3 reveal" style="--i:2" data-emoji="🎉">
+      <span class="oc-tag">Inauguração</span>
+      <h3 class="oc-title">Primeira<br>Vez 10% OFF</h3>
+      <p class="oc-desc">Primeiro pedido com desconto exclusivo de inauguração. Sem valor mínimo.</p>
+      <span class="oc-highlight">– 10%</span>
+      <span class="oc-code">AMICI10</span>
+      <a href="https://wa.me/5561999999999?text=Quero%20usar%20o%20cupom%20AMICI10%20🍕" target="_blank" rel="noopener" class="oc-cta">Usar cupom agora</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CARDÁPIO ═══════════════════════ -->
+<section class="menu" id="cardapio">
+  <div class="menu-head">
+    <span class="section-kicker" style="color:var(--terracotta)">Nosso Cardápio</span>
+    <h2 class="section-title">Cada pizza conta<br>uma <em>história italiana</em></h2>
+    <p class="section-sub">Massa fermentada por 72h, molho de tomate San Marzano, ingredientes selecionados. Preços para pizza grande (35cm).</p>
+  </div>
+
+  <div class="menu-tabs">
+    <button class="menu-tab active" onclick="filterMenu('todas', this)">Todas</button>
+    <button class="menu-tab" onclick="filterMenu('classicas', this)">Clássicas</button>
+    <button class="menu-tab" onclick="filterMenu('especiais', this)">Especiais</button>
+    <button class="menu-tab" onclick="filterMenu('doces', this)">Doces</button>
+  </div>
+
+  <div class="menu-grid" id="menu-grid">
+
+    <div class="pizza-card reveal" style="--i:0" data-cat="classicas">
+      <div class="pc-visual">
+        🍕
+        <div class="pc-badges"><span class="pc-badge badge-best">+ pedida</span></div>
+      </div>
+      <div class="pc-body">
+        <h3 class="pc-name">Margherita <em>della Casa</em></h3>
+        <p class="pc-ingredients">Molho San Marzano · Fior di latte · Manjericão fresco · Azeite extra virgem</p>
+        <div class="pc-footer">
+          <div class="pc-price"><small>a partir de</small>R$ 42,90</div>
+          <a href="https://wa.me/5561999999999?text=Quero%20a%20Margherita%20della%20Casa%20🍕" target="_blank" rel="noopener" class="pc-btn">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Pedir
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pizza-card reveal" style="--i:1" data-cat="especiais">
+      <div class="pc-visual" style="background: radial-gradient(circle at 40% 35%, rgba(139,37,0,0.25), rgba(43,26,13,0.9))">
+        🥩
+        <div class="pc-badges"><span class="pc-badge badge-hot">🔥 Hot</span></div>
+      </div>
+      <div class="pc-body">
+        <h3 class="pc-name">Carne <em>Nobile</em></h3>
+        <p class="pc-ingredients">Molho especial · Carne moída temperada · Cheddar artesanal · Cebola caramelizada · Pimenta biquinho</p>
+        <div class="pc-footer">
+          <div class="pc-price"><small>a partir de</small>R$ 52,90</div>
+          <a href="https://wa.me/5561999999999?text=Quero%20a%20Carne%20Nobile%20🍕" target="_blank" rel="noopener" class="pc-btn">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Pedir
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pizza-card reveal" style="--i:2" data-cat="especiais">
+      <div class="pc-visual" style="background: radial-gradient(circle at 40% 35%, rgba(74,103,65,0.2), rgba(43,26,13,0.9))">
+        🫒
+        <div class="pc-badges">
+          <span class="pc-badge badge-new">Nova</span>
+          <span class="pc-badge badge-veg">🌿 Veg</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <h3 class="pc-name">Quatro <em>Stagioni</em></h3>
+        <p class="pc-ingredients">Molho San Marzano · Alcachofra · Cogumelos · Azeitona preta · Presunto cru · Mozzarella</p>
+        <div class="pc-footer">
+          <div class="pc-price"><small>a partir de</small>R$ 57,90</div>
+          <a href="https://wa.me/5561999999999?text=Quero%20a%20Quattro%20Stagioni%20🍕" target="_blank" rel="noopener" class="pc-btn">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Pedir
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pizza-card reveal" style="--i:3" data-cat="classicas">
+      <div class="pc-visual" style="background: radial-gradient(circle at 40% 35%, rgba(196,135,42,0.2), rgba(43,26,13,0.9))">
+        🧀
+        <div class="pc-badges"><span class="pc-badge badge-best">⭐ Top</span></div>
+      </div>
+      <div class="pc-body">
+        <h3 class="pc-name">Quatro <em>Formaggi</em></h3>
+        <p class="pc-ingredients">Mozzarella · Gorgonzola suave · Provolone · Parmesão · Mel de abelha</p>
+        <div class="pc-footer">
+          <div class="pc-price"><small>a partir de</small>R$ 55,90</div>
+          <a href="https://wa.me/5561999999999?text=Quero%20a%20Quattro%20Formaggi%20🍕" target="_blank" rel="noopener" class="pc-btn">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Pedir
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pizza-card reveal" style="--i:4" data-cat="especiais">
+      <div class="pc-visual" style="background: radial-gradient(circle at 40% 35%, rgba(200,73,42,0.2), rgba(43,26,13,0.9))">
+        🍗
+        <div class="pc-badges"><span class="pc-badge badge-hot">🔥 Favorita</span></div>
+      </div>
+      <div class="pc-body">
+        <h3 class="pc-name">Frango <em>Primavera</em></h3>
+        <p class="pc-ingredients">Frango grelhado desfiado · Catupiry artesanal · Milho verde · Mozzarella · Orégano italiano</p>
+        <div class="pc-footer">
+          <div class="pc-price"><small>a partir de</small>R$ 48,90</div>
+          <a href="https://wa.me/5561999999999?text=Quero%20o%20Frango%20Primavera%20🍕" target="_blank" rel="noopener" class="pc-btn">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Pedir
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pizza-card reveal" style="--i:5" data-cat="doces">
+      <div class="pc-visual" style="background: radial-gradient(circle at 40% 35%, rgba(139,37,0,0.2), rgba(43,26,13,0.9))">
+        🍫
+        <div class="pc-badges"><span class="pc-badge badge-new">✨ Nova</span></div>
+      </div>
+      <div class="pc-body">
+        <h3 class="pc-name">Nutella <em>Paradiso</em></h3>
+        <p class="pc-ingredients">Nutella · Banana caramelizada · Morangos frescos · Creme de leite · Granola artesanal</p>
+        <div class="pc-footer">
+          <div class="pc-price"><small>a partir de</small>R$ 46,90</div>
+          <a href="https://wa.me/5561999999999?text=Quero%20a%20Nutella%20Paradiso%20🍕" target="_blank" rel="noopener" class="pc-btn">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Pedir
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="menu-footer">
+    <p>Mais de 20 sabores disponíveis • Meio a meio disponível</p>
+    <a href="https://wa.me/5561999999999?text=Quero%20ver%20o%20cardápio%20completo%20🍕" target="_blank" rel="noopener" class="btn-cardapio-full">
+      Ver cardápio completo no WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════ DIFERENCIAIS ═══════════════════════ -->
+<section class="diferenciais" id="diferenciais">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="section-kicker">Por que a Quattro Amici</span>
+      <h2 class="section-title">A diferença está em<br>cada <em>detalhe</em></h2>
+    </div>
+    <div class="dif-grid reveal-stagger">
+      <div class="dif-card reveal" style="--i:0">
+        <span class="dif-icon">🌾</span>
+        <h3 class="dif-title">Massa Artesanal</h3>
+        <p class="dif-desc">Fermentação lenta de 72 horas com farinha especial. Crocante por fora, macia por dentro — como deve ser.</p>
+      </div>
+      <div class="dif-card reveal" style="--i:1">
+        <span class="dif-icon">🍅</span>
+        <h3 class="dif-title">Molho Exclusivo</h3>
+        <p class="dif-desc">Receita criada pelos quatro sócios após 3 meses de testes. Tomate San Marzano, ervas frescas e segredo da casa.</p>
+      </div>
+      <div class="dif-card reveal" style="--i:2">
+        <span class="dif-icon">⚡</span>
+        <h3 class="dif-title">Entrega Rápida</h3>
+        <p class="dif-desc">Média de 35 minutos na porta. Embalagem térmica que mantém a pizza quente e crocante na chegada.</p>
+      </div>
+      <div class="dif-card reveal" style="--i:3">
+        <span class="dif-icon">💬</span>
+        <h3 class="dif-title">Atendimento Real</h3>
+        <p class="dif-desc">Sem robô, sem fila. Você fala diretamente com a equipe pelo WhatsApp e seu pedido é atendido na hora.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ HISTÓRIA ═══════════════════════ -->
+<section class="story" id="historia">
+  <div class="container">
+    <div class="story-inner">
+      <div class="story-visual reveal">
+        <div class="story-img-wrap">🧑‍🍳</div>
+        <div class="story-badge">
+          <div class="sb-num">4</div>
+          <div class="sb-text">amigos com um sonho em comum</div>
+        </div>
+      </div>
+      <div class="story-content reveal" style="--i:1">
+        <div class="ornament" style="justify-content:flex-start;margin-bottom:16px">
+          <span>Nossa história</span>
+        </div>
+        <h2 class="section-title" style="text-align:left">
+          Nascemos da amizade.<br>Crescemos com a <em>paixão.</em>
+        </h2>
+        <div class="story-text">
+          <p>Quattro Amici — quatro amigos. É exatamente isso que somos. Nos conhecemos no Riacho Fundo há anos, e por muito tempo o sonho de abrir uma pizzaria foi <strong>pauta de toda reunião</strong>, de cada fim de semana compartilhado.</p>
+          <p>Cansamos de comer pizza que decepciona: massa borrachuda, queijo de qualidade duvidosa, sabor que some rápido. Decidimos que <strong>o Riacho Fundo merecia mais</strong>. Merecia uma pizza de verdade.</p>
+          <p>Estudamos, testamos, erramos, testamos de novo. Depois de meses aperfeiçoando nossa receita, chegamos ao produto que você vai provar hoje. <strong>Feito com as mãos. Entregue com alma.</strong></p>
+        </div>
+        <div class="story-pillars">
+          <div class="story-pillar">
+            <span class="sp-icon">🤝</span>
+            <div class="sp-title">Amizade Real</div>
+            <div class="sp-desc">4 sócios, 1 visão. Qualidade acima de tudo.</div>
+          </div>
+          <div class="story-pillar">
+            <span class="sp-icon">📍</span>
+            <div class="sp-title">Local de Verdade</div>
+            <div class="sp-desc">Moramos aqui. Servimos a vizinhança.</div>
+          </div>
+          <div class="story-pillar">
+            <span class="sp-icon">🔬</span>
+            <div class="sp-title">3 Meses de Testes</div>
+            <div class="sp-desc">Só abrimos quando ficou perfeito.</div>
+          </div>
+          <div class="story-pillar">
+            <span class="sp-icon">❤️</span>
+            <div class="sp-title">Feito com Amor</div>
+            <div class="sp-desc">Cada pizza, como se fosse pra família.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ DEPOIMENTOS ═══════════════════════ -->
+<section class="depoimentos" id="depoimentos">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <span class="section-kicker">O que dizem nossos clientes</span>
+      <h2 class="section-title">Quem provou,<br><em>voltou</em></h2>
+    </div>
+    <div class="dep-grid reveal-stagger">
+      <div class="dep-card reveal" style="--i:0">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Cara, que massa incrível. Crocante na borda, macia no meio. Nunca comi uma pizza assim em delivery no Riacho Fundo. Virei cliente fixo da inauguração."</p>
+        <div class="dep-author">
+          <div class="dep-avatar">M</div>
+          <div>
+            <div class="dep-name">Marcos A.</div>
+            <div class="dep-meta">Riacho Fundo I · Pedido verificado</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card reveal" style="--i:1">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Pedi a Margherita e a Quatro Formaggi. As duas chegaram quentinhas, bem embaladas. O atendimento pelo WhatsApp foi super rápido. 10 estrelas se pudesse."</p>
+        <div class="dep-author">
+          <div class="dep-avatar" style="background:var(--sage)">J</div>
+          <div>
+            <div class="dep-name">Juliana F.</div>
+            <div class="dep-meta">Riacho Fundo I · Pedido verificado</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card reveal" style="--i:2">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Pedi pra família toda — 3 pizzas. Chegou em menos de 40 minutos, tudo certinho. A Carne Nobile é surreal. Já recomendei pra todo mundo da rua."</p>
+        <div class="dep-author">
+          <div class="dep-avatar" style="background:var(--ocre)">R</div>
+          <div>
+            <div class="dep-name">Ricardo S.</div>
+            <div class="dep-meta">QS 03 · Pedido verificado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ DELIVERY ═══════════════════════ -->
+<section class="delivery" id="delivery">
+  <div class="delivery-inner">
+    <div class="delivery-info reveal">
+      <span class="section-kicker">Área de Entrega</span>
+      <h2 class="section-title" style="text-align:left">
+        Chegamos na<br>sua <em>porta</em>
+      </h2>
+      <p style="margin-top:16px;font-size:14px;color:rgba(43,26,13,0.6);line-height:1.7">
+        Atendemos Riacho Fundo I, Riacho Fundo II e bairros vizinhos. Frete fixo — sem surpresa na hora de pagar.
+      </p>
+      <div class="bairros" style="margin-top:20px">
+        <span class="bairro highlight">Riacho Fundo I</span>
+        <span class="bairro">Riacho Fundo II</span>
+        <span class="bairro">Núcleo Bandeirante</span>
+        <span class="bairro">Candangolândia</span>
+        <span class="bairro">Park Way</span>
+        <span class="bairro">Estrutural</span>
+      </div>
+      <div class="delivery-stats" style="margin-top:28px">
+        <div class="ds-item">
+          <span class="ds-num">35'</span>
+          <span class="ds-label">Tempo médio</span>
+        </div>
+        <div class="ds-item">
+          <span class="ds-num">R$ 5</span>
+          <span class="ds-label">Frete fixo</span>
+        </div>
+        <div class="ds-item">
+          <span class="ds-num">R$ 0</span>
+          <span class="ds-label">Frete na inauguração</span>
+        </div>
+        <div class="ds-item">
+          <span class="ds-num">6km</span>
+          <span class="ds-label">Raio de entrega</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="--i:1">
+      <div class="delivery-map">
+        <h3 class="dm-title">🛵 Como funciona</h3>
+        <div class="dm-list">
+          <div class="dm-item">
+            <span class="dm-icon">📱</span>
+            <div class="dm-info">
+              <div class="dm-name">Pedido pelo WhatsApp</div>
+              <div class="dm-detail">Manda mensagem, a gente responde na hora</div>
+            </div>
+            <span class="dm-badge">Rápido</span>
+          </div>
+          <div class="dm-item">
+            <span class="dm-icon">🧾</span>
+            <div class="dm-info">
+              <div class="dm-name">Confirma e paga</div>
+              <div class="dm-detail">Pix, cartão ou dinheiro na entrega</div>
+            </div>
+            <span class="dm-badge">Fácil</span>
+          </div>
+          <div class="dm-item">
+            <span class="dm-icon">🔥</span>
+            <div class="dm-info">
+              <div class="dm-name">Sua pizza é preparada</div>
+              <div class="dm-detail">Fresca, na hora, sem pizza prontas esperando</div>
+            </div>
+            <span class="dm-badge red">Artesanal</span>
+          </div>
+          <div class="dm-item">
+            <span class="dm-icon">🛵</span>
+            <div class="dm-info">
+              <div class="dm-name">Entrega na porta</div>
+              <div class="dm-detail">Média de 35 min · Embalagem térmica</div>
+            </div>
+            <span class="dm-badge">35 min</span>
+          </div>
+        </div>
+        <div class="horarios">
+          <div class="hor-title">Horários de funcionamento</div>
+          <div class="hor-row"><span>Seg – Qui</span><strong>18h às 23h</strong></div>
+          <div class="hor-row"><span>Sex – Sáb</span><strong>18h às 00h</strong></div>
+          <div class="hor-row"><span>Domingo</span><strong>17h às 22h30</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FAQ ═══════════════════════ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <span class="section-kicker">Tire suas dúvidas</span>
+      <h2 class="section-title">Perguntas<br><em>frequentes</em></h2>
+    </div>
+    <div class="faq-inner">
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Como faço meu pedido?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Super simples! Clique em qualquer botão "Pedir agora" e você vai direto para o WhatsApp. Manda a mensagem, a gente responde rapidinho com o cardápio completo e te ajuda a montar seu pedido.
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Quanto tempo demora a entrega?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Nossa média é de 35 minutos para quem mora no Riacho Fundo I. Bairros vizinhos podem variar um pouco. Em noites de pico (sexta e sábado) pode chegar a 45 minutos, mas avisamos sempre com antecedência.
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Vocês fazem pizza meio a meio?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Com certeza! Você pode combinar qualquer dois sabores do nosso cardápio. O preço é calculado pela média dos dois sabores escolhidos. Peça no WhatsApp e informe os dois sabores.
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Quais formas de pagamento vocês aceitam?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Aceitamos Pix (com desconto adicional de R$ 2), cartão de crédito/débito na maquininha (o entregador leva), e dinheiro. Para pagamento com cartão, informamos o valor exato no pedido.
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          O cupom AMICI10 tem validade?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          O cupom AMICI10 é válido apenas para o primeiro pedido de cada cliente durante o período de inauguração. Basta mencionar o cupom no WhatsApp no momento do pedido. Sem valor mínimo, sem letra miúda.
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Vocês atendem em qual horário?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Segunda a quinta das 18h às 23h, sexta e sábado das 18h à meia-noite, e domingo das 17h às 22h30. Fora desses horários, o WhatsApp vai estar off — mas pode mandar mensagem que respondemos assim que abrirmos!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CTA FINAL ═══════════════════════ -->
+<section class="cta-final">
+  <div class="cta-final-inner">
+    <div class="ornament center reveal" style="margin-bottom:24px">
+      <span>Seu jantar perfeito</span>
+    </div>
+    <h2 class="section-title reveal" style="--i:1">
+      A pizza que você merece<br>está a uma <em>mensagem</em> de distância.
+    </h2>
+    <p class="section-sub reveal" style="--i:2;margin-top:16px">
+      Massa artesanal, ingredientes selecionados, entrega em até 35 minutos. Sem complicação. Sem enrolação.
+    </p>
+    <div class="cta-final-btns reveal" style="--i:3">
+      <a href="https://wa.me/5561999999999?text=Olá!%20Quero%20fazer%20um%20pedido%20na%20Quattro%20Amici%20🍕%20Cupom:%20AMICI10" target="_blank" rel="noopener" class="cta-mega">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Pedir agora no WhatsApp
+      </a>
+      <span class="cta-final-note">Atendimento humano · Sem robô · Resposta imediata</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="fb-logo">Quattro <em>Amici</em></div>
+      <p>Pizza artesanal feita com paixão no Riacho Fundo I, Brasília. Delivery e retirada. Feita com as mãos, entregue com alma.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#cardapio">Cardápio</a></li>
+        <li><a href="#ofertas">Promoções</a></li>
+        <li><a href="#historia">Nossa história</a></li>
+        <li><a href="#delivery">Delivery</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="https://wa.me/5561999999999" target="_blank">WhatsApp</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Google Maps</a></li>
+        <li><a href="#">Riacho Fundo I, DF</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Quattro Amici Pizzaria · Todos os direitos reservados</p>
+    <span class="footer-logo-small">Quattro <em>Amici</em></span>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<div class="float-wa">
+  <span class="float-wa-label">Pedir agora 🍕</span>
+  <a href="https://wa.me/5561999999999?text=Olá!%20Quero%20fazer%20um%20pedido%20🍕" target="_blank" rel="noopener" class="float-wa-btn" aria-label="Pedir pelo WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+</div>
+
+<!-- MOBILE STICKY BAR -->
+<div class="sticky-mobile" id="stickymobile">
+  <a href="https://wa.me/5561999999999?text=Quero%20fazer%20um%20pedido%20🍕" target="_blank" rel="noopener" class="sm-btn sm-btn-wa">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    Pedir no WhatsApp
+  </a>
+  <a href="#cardapio" class="sm-btn sm-btn-menu">Ver Cardápio</a>
+</div>
+
+<script>
+/* ════════════════ POPUP ════════════════ */
+function closePopup() {
+  document.getElementById('popup').classList.remove('show');
+  sessionStorage.setItem('popupSeen', '1');
+}
+window.addEventListener('load', () => {
+  if (!sessionStorage.getItem('popupSeen')) {
+    setTimeout(() => document.getElementById('popup').classList.add('show'), 2800);
+  }
+});
+document.getElementById('popup').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('popup')) closePopup();
+});
+
+/* ════════════════ NAVBAR SCROLL ════════════════ */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ════════════════ COUNTDOWN ════════════════ */
+function startCountdown() {
+  const stored = sessionStorage.getItem('cd_end');
+  let end;
+  if (stored) {
+    end = parseInt(stored);
+  } else {
+    end = Date.now() + (5 * 3600 + 47 * 60 + 32) * 1000;
+    sessionStorage.setItem('cd_end', end);
+  }
+  const hEl = document.getElementById('h-horas');
+  const mEl = document.getElementById('h-min');
+  const sEl = document.getElementById('h-sec');
+  function update() {
+    const diff = Math.max(0, end - Date.now());
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    hEl.textContent = String(h).padStart(2,'0');
+    mEl.textContent = String(m).padStart(2,'0');
+    sEl.textContent = String(s).padStart(2,'0');
+    if (diff > 0) setTimeout(update, 1000);
+  }
+  update();
+}
+startCountdown();
+
+/* ════════════════ SCROLL REVEAL ════════════════ */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObs.observe(el));
+
+/* ════════════════ MENU FILTER ════════════════ */
+function filterMenu(cat, btn) {
+  document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pizza-card').forEach(card => {
+    const show = cat === 'todas' || card.dataset.cat === cat;
+    card.style.display = show ? '' : 'none';
+    if (show) {
+      card.style.animation = 'scaleIn 0.4s cubic-bezier(.22,1,.36,1) both';
+      setTimeout(() => card.style.animation = '', 400);
+    }
+  });
+}
+
+/* ════════════════ FAQ ════════════════ */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ════════════════ ANNOUNCE CLOSE ════════════════ */
+// Already handled inline
+
+/* ════════════════ MOBILE STICKY OFFSET ════════════════ */
+// Add bottom padding on mobile so sticky bar doesn't cover content
+if (window.innerWidth <= 640) {
+  document.body.style.paddingBottom = '80px';
+}
+</script>
+</body>
+</html>
